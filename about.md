@@ -41,15 +41,18 @@ title: About
 .collapse-card summary:focus {
   outline: none;
 }
-.collapse-card .plus-minus {
+.collapse-card .arrow {
   width: 20px;
   height: 20px;
   display: inline-block;
   margin-right: 0.89em;
   transition: transform 0.23s;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--card-color, #2563eb);
 }
-.collapse-card[open] .plus-minus {
-  transform: rotate(45deg);
+.collapse-card[open] .arrow {
+  transform: rotate(90deg);
 }
 .collapse-card .card-content {
   padding: 1.2em 1.5em 1.3em 2.2em;
@@ -87,7 +90,7 @@ title: About
 <div class="about-container">
 
 <details class="collapse-card" style="--card-color: #2563eb; --card-bg: #e0e7ff;" open>
-  <summary><span class="plus-minus">＋</span>🌟 Overview</summary>
+  <summary><span class="arrow">&gt;</span>🌟 Overview</summary>
   <div class="card-content">
     <strong>FreeChessed Puzzle AI Tutor</strong> is your open-source, free chess learning companion designed for enthusiasts who want <b>in-depth, educational analysis</b> of their puzzle mistakes—<i>without</i> paying for premium subscriptions.
     <br><br>
@@ -101,7 +104,7 @@ title: About
 </details>
 
 <details class="collapse-card" style="--card-color: #f59e42; --card-bg: #fef6e6;">
-  <summary><span class="plus-minus">＋</span>🛡️ Architecture &amp; Security</summary>
+  <summary><span class="arrow">&gt;</span>🛡️ Architecture &amp; Security</summary>
   <div class="card-content">
     <ol>
       <li>
@@ -123,7 +126,7 @@ title: About
 </details>
 
 <details class="collapse-card" style="--card-color: #10b981; --card-bg: #ecfdf5;">
-  <summary><span class="plus-minus">＋</span>🔑 Core Features</summary>
+  <summary><span class="arrow">&gt;</span>🔑 Core Features</summary>
   <div class="card-content">
     <ul>
       <li><b>Tactical, actionable explanations:</b> Discover the decisive refutation to your mistake for stronger learning.</li>
@@ -134,7 +137,7 @@ title: About
 </details>
 
 <details class="collapse-card" style="--card-color: #d946ef; --card-bg: #faf5ff;">
-  <summary><span class="plus-minus">＋</span>🤝 Contribute</summary>
+  <summary><span class="arrow">&gt;</span>🤝 Contribute</summary>
   <div class="card-content">
     We welcome your ideas, code, and feedback! Opportunities for contribution:
     <ul>
@@ -154,19 +157,19 @@ title: About
 <script>
 document.querySelectorAll('.collapse-card summary').forEach((summary) => {
   summary.addEventListener('click', function(e) {
-    // toggle the plus/minus sign
-    const pm = summary.querySelector('.plus-minus');
+    // toggle the arrow icon
+    const arrow = summary.querySelector('.arrow');
     setTimeout(() => {
       if (summary.parentNode.open) {
-        pm.textContent = '－';
+        arrow.style.transform = 'rotate(90deg)';
       } else {
-        pm.textContent = '＋';
+        arrow.style.transform = 'rotate(0deg)';
       }
     }, 10);
   });
-  // Set correct sign on load if open
+  // Set correct direction on load if open
   if (summary.parentNode.open) {
-    summary.querySelector('.plus-minus').textContent = '－';
+    summary.querySelector('.arrow').style.transform = 'rotate(90deg)';
   }
 });
 </script>
