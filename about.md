@@ -7,137 +7,166 @@ title: About
 .about-container {
   max-width: 760px;
   margin: 2rem auto 3rem auto;
-  padding: 2rem 2.5rem;
-  background: #f8fafc;
-  border-radius: 14px;
-  box-shadow: 0 2px 18px 0 rgba(0,0,0,0.08);
   font-family: 'Segoe UI', 'Arial', sans-serif;
 }
-.about-container h1, .about-container h2, .about-container h3 {
-  color: #1e293b;
+.collapse-card {
+  margin-bottom: 1.5em;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,0.04);
+  overflow: hidden;
+  background: #fff;
+  border-left: 12px solid var(--card-color, #2563eb);
+  transition: box-shadow 0.2s;
 }
-.about-container h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.35em;
-  text-align: center;
-  letter-spacing: -1px;
+.collapse-card[open] {
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08);
 }
-.about-container h2 {
-  font-size: 1.35rem;
-  margin-top: 2em;
-  margin-bottom: 1em;
-  border-left: 4px solid #2563eb;
-  padding-left: 0.6em;
-  background: #e0e7ff;
-  border-radius: 0 6px 6px 0;
+.collapse-card summary {
+  cursor: pointer;
+  font-size: 1.15rem;
+  font-weight: bold;
+  padding: 1.05em 1.2em 1.05em 1em;
+  background: var(--card-bg, #e0e7ff);
+  color: var(--card-color, #2563eb);
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  border-bottom: 1px solid #e5e7eb;
+  user-select: none;
+  outline: none;
+  position: relative;
 }
-.about-container h2 .emoji {
-  font-size: 1.3em;
-  margin-right: 0.2em;
+.collapse-card summary::-webkit-details-marker {
+  display: none;
 }
-.about-container h3 {
-  font-size: 1.13rem;
-  margin-top: 1.7em;
+.collapse-card summary:focus {
+  outline: none;
 }
-.about-container ul, .about-container ol {
-  margin-left: 1.5em;
+.collapse-card .plus-minus {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 0.89em;
+  transition: transform 0.23s;
+}
+.collapse-card[open] .plus-minus {
+  transform: rotate(45deg);
+}
+.collapse-card .card-content {
+  padding: 1.2em 1.5em 1.3em 2.2em;
+  font-size: 1.04rem;
+  color: #1e293b;
+  background: var(--card-bg, #e0e7ff);
+}
+.collapse-card ul {
+  margin-left: 1.4em;
   margin-bottom: 1em;
 }
-.about-container li {
-  padding-bottom: 0.4em;
+.collapse-card ol {
+  margin-left: 1.4em;
+  margin-bottom: 1em;
 }
-.about-container .card-section {
-  background: #fff;
-  border-radius: 10px;
-  padding: 1.3em 1.3em 1.1em 1.3em;
-  margin-bottom: 1.5em;
-  border-left: 5px solid #2563eb;
-  box-shadow: 0 1px 6px 0 rgba(0,0,0,0.03);
+.collapse-card li {
+  padding-bottom: 0.35em;
 }
-.about-container .muted {
+.collapse-card .muted {
   color: #64748b;
-  font-size: 0.96em;
+  font-size: 0.97em;
   margin-top: 0.7em;
   margin-bottom: 0.9em;
 }
-.about-container a {
-  color: #2563eb;
-  text-decoration: underline;
-}
 @media (max-width: 600px) {
   .about-container {
-    padding: 1.2rem 0.7rem;
+    padding: 0.3rem;
+  }
+  .collapse-card .card-content {
+    padding: 1em 0.6em 1.2em 1em;
   }
 }
 </style>
 
 <div class="about-container">
 
-<h1>♟️ FreeChessed Puzzle AI Tutor</h1>
-
-<div class="card-section">
-  <h2><span class="emoji">🌟</span> Overview</h2>
-  <p>
+<details class="collapse-card" style="--card-color: #2563eb; --card-bg: #e0e7ff;" open>
+  <summary><span class="plus-minus">＋</span>🌟 Overview</summary>
+  <div class="card-content">
     <strong>FreeChessed Puzzle AI Tutor</strong> is your open-source, free chess learning companion designed for enthusiasts who want <b>in-depth, educational analysis</b> of their puzzle mistakes—<i>without</i> paying for premium subscriptions.
-  </p>
-  <p>
+    <br><br>
     Every missed puzzle becomes an actionable lesson: our custom AI explains <b>why</b> your move failed and what immediate counter-threat you missed—helping you improve faster, for free.
-  </p>
-  <ul>
-    <li><strong>No subscriptions or paywalls</strong>: Powered by <a href="https://lichess.org/api" target="_blank">Lichess's free API</a> and Google's free-tier backend.</li>
-    <li><strong>Instant, educational feedback</strong>: Focused on your mistake, not just the solution.</li>
-    <li><strong>Easy access</strong>: Use from any browser, no installation required.</li>
-  </ul>
-</div>
-
-<div class="card-section">
-  <h2><span class="emoji">🛡️</span> Architecture &amp; Security</h2>
-  <ol>
-    <li>
-      <b>Web Frontend (Public):</b> A modern, responsive web app where you solve puzzles and receive instant analysis.
-    </li>
-    <li>
-      <b>Google Apps Script Backend (Private API):</b> Secure, serverless, and managed by the developer.
-      <ul>
-        <li>Keeps API keys safe</li>
-        <li>Executes the custom AI logic (the “AI Tutor”)</li>
-        <li>Logs user performance privately for ongoing improvement</li>
-      </ul>
-    </li>
-  </ol>
-  <div class="muted">
-    <b>Privacy-first:</b> You interact only with the public site; all complex logic and private data stay secure on the backend.
+    <ul>
+      <li><strong>No subscriptions or paywalls</strong>: Powered by <a href="https://lichess.org/api" target="_blank">Lichess's free API</a> and Google's free-tier backend.</li>
+      <li><strong>Instant, educational feedback</strong>: Focused on your mistake, not just the solution.</li>
+      <li><strong>Easy access</strong>: Use from any browser, no installation required.</li>
+    </ul>
   </div>
-</div>
+</details>
 
-<div class="card-section">
-  <h2><span class="emoji">🔑</span> Core Features</h2>
-  <ul>
-    <li><b>Tactical, actionable explanations:</b> Discover the decisive refutation to your mistake for stronger learning.</li>
-    <li><b>Performance tracking (private):</b> Data helps us continuously improve the AI’s coaching ability.</li>
-    <li><b>Open-source &amp; customizable:</b> Contribute or adapt the core logic to cover more chess concepts.</li>
-  </ul>
-</div>
+<details class="collapse-card" style="--card-color: #f59e42; --card-bg: #fef6e6;">
+  <summary><span class="plus-minus">＋</span>🛡️ Architecture &amp; Security</summary>
+  <div class="card-content">
+    <ol>
+      <li>
+        <b>Web Frontend (Public):</b> A modern, responsive web app where you solve puzzles and receive instant analysis.
+      </li>
+      <li>
+        <b>Google Apps Script Backend (Private API):</b> Secure, serverless, and managed by the developer.
+        <ul>
+          <li>Keeps API keys safe</li>
+          <li>Executes the custom AI logic (the “AI Tutor”)</li>
+          <li>Logs user performance privately for ongoing improvement</li>
+        </ul>
+      </li>
+    </ol>
+    <div class="muted">
+      <b>Privacy-first:</b> You interact only with the public site; all complex logic and private data stay secure on the backend.
+    </div>
+  </div>
+</details>
 
-<div class="card-section">
-  <h2><span class="emoji">🤝</span> Contribute</h2>
-  <p>
+<details class="collapse-card" style="--card-color: #10b981; --card-bg: #ecfdf5;">
+  <summary><span class="plus-minus">＋</span>🔑 Core Features</summary>
+  <div class="card-content">
+    <ul>
+      <li><b>Tactical, actionable explanations:</b> Discover the decisive refutation to your mistake for stronger learning.</li>
+      <li><b>Performance tracking (private):</b> Data helps us continuously improve the AI’s coaching ability.</li>
+      <li><b>Open-source &amp; customizable:</b> Contribute or adapt the core logic to cover more chess concepts.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="collapse-card" style="--card-color: #d946ef; --card-bg: #faf5ff;">
+  <summary><span class="plus-minus">＋</span>🤝 Contribute</summary>
+  <div class="card-content">
     We welcome your ideas, code, and feedback! Opportunities for contribution:
-  </p>
-  <ul>
-    <li><b>Frontend:</b> Enhance UI/UX, visualization, or puzzle presentation.</li>
-    <li><b>Backend:</b> Improve explanations and optimize analysis routines.</li>
-  </ul>
-  <div class="muted">
-    See <a href="https://github.com/codingchampion1/ai-chess-puzzle/issues" target="_blank">open issues</a> or open a Pull Request to get involved!
+    <ul>
+      <li><b>Frontend:</b> Enhance UI/UX, visualization, or puzzle presentation.</li>
+      <li><b>Backend:</b> Improve explanations and optimize analysis routines.</li>
+    </ul>
+    <div class="muted">
+      See <a href="https://github.com/codingchampion1/ai-chess-puzzle/issues" target="_blank">open issues</a> or open a Pull Request to get involved!
+    </div>
   </div>
-</div>
+</details>
 
 <div style="text-align:center; color:#64748b; font-size:0.98em; margin-top:2em;">
   This project is open source. <a href="https://github.com/codingchampion1/ai-chess-puzzle" target="_blank">View on GitHub</a>
 </div>
 
-</div>
+<script>
+document.querySelectorAll('.collapse-card summary').forEach((summary) => {
+  summary.addEventListener('click', function(e) {
+    // toggle the plus/minus sign
+    const pm = summary.querySelector('.plus-minus');
+    setTimeout(() => {
+      if (summary.parentNode.open) {
+        pm.textContent = '－';
+      } else {
+        pm.textContent = '＋';
+      }
+    }, 10);
+  });
+  // Set correct sign on load if open
+  if (summary.parentNode.open) {
+    summary.querySelector('.plus-minus').textContent = '－';
+  }
+});
+</script>
