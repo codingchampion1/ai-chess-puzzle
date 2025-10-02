@@ -1,0 +1,36 @@
+# Jekyll Configuration for FreeChessed Puzzle AI Tutor
+
+# --- Site Settings ---
+title: "FreeChessed Puzzle AI Tutor"
+description: "Your open-source, free-tier chess puzzle analysis coach."
+url: "" # Set your custom domain here, e.g., "https://your-domain.com"
+baseurl: "" # Use "" if hosting on a custom domain or in the root of GitHub Pages
+logo: "assets/images/logo.png"
+
+# --- Navigation Links (Used in _layouts/default.html) ---
+header_pages:
+  - index.html
+  - about.md
+
+# --- Build Settings ---
+permalink: pretty
+markdown: kramdown
+
+# Default settings for pages
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Files and directories to exclude from the site build process
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - .github
+  - README.md
+  - LICENSE.md
+  - "*.log"
